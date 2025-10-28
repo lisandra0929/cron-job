@@ -31,6 +31,7 @@ cron.schedule('* * * * *', async () => {
   try {
     const response = await axios.get(`https://cron-job-c9zm.onrender.com/ping`);
     console.log('🔄 Cron ejecutado:', new Date().toLocaleString(), '| Response:', response.data);
+    console.log(`url: https://cron-job-c9zm.onrender.com/ping`)
   } catch (err) {
     console.error('❌ Error en cron:', err.message);
   }
