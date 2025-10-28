@@ -22,16 +22,17 @@ app.get('/', (req, res) => {
   res.send('API Running');
 });
 
+app.use('/api/urls', require('./routes/urlRoutes'));
+
 app.get('/ping', (req, res) => {
-  res.status(200).send('Pong');
+  res.status(200).send('Pang');
 });
 
 // Cron-job de prueba: llama al endpoint /ping cada minuto
 cron.schedule('* * * * *', async () => {
   try {
-    const response = await axios.get(`https://cron-job-c9zm.onrender.com/ping`);
+    const response = await axios.get(`http://localhost:${process.env.PORT || 5000}/ping`);
     console.log('🔄 Cron ejecutado:', new Date().toLocaleString(), '| Response:', response.data);
-    console.log(`url: https://cron-job-c9zm.onrender.com/ping`)
   } catch (err) {
     console.error('❌ Error en cron:', err.message);
   }
