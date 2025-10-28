@@ -29,7 +29,7 @@ app.get('/ping', (req, res) => {
 // Cron-job de prueba: llama al endpoint /ping cada minuto
 cron.schedule('* * * * *', async () => {
   try {
-    const response = await axios.get(`http://localhost:${process.env.PORT || 5000}/ping`);
+    const response = await axios.get(`https://cron-job-c9zm.onrender.com/ping`);
     console.log('🔄 Cron ejecutado:', new Date().toLocaleString(), '| Response:', response.data);
   } catch (err) {
     console.error('❌ Error en cron:', err.message);
